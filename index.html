@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>I Love Cho</title>
+<link rel  ="stylesheet" href= "style.css">
+</style>
+</head>
+<body>
+
+  <div class="hearts-container">
+    <div class="heart" id="heartLeft">❤️</div>
+    <div class="heart" id="heartRight">❤️</div>
+  </div>
+
+  <button id="clickMe">Click Me</button>
+
+  <div id="mainContainer" class="main-container" style="display: none;">
+    <div class="flower">🌸</div>
+    <div class="main-text">❤️ I Love Cho ❤️</div>
+    <div class="flower">🌸</div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('clickMe');
+    const mainContainer = document.getElementById('mainContainer');
+    const heartLeft = document.getElementById('heartLeft');
+    const heartRight = document.getElementById('heartRight');
+
+    function animateHeart(heart) {
+      heart.style.transition = 'transform 2s ease, opacity 2s ease';
+      heart.style.transform = 'translateY(-150vh) scale(1.5)';
+      heart.style.opacity = '0';
+      setTimeout(() => {
+        heart.style.transition = '';
+        heart.style.transform = '';
+        heart.style.opacity = '1';
+      }, 2200);
+    }
+
+    heartLeft.addEventListener('click', () => {
+      animateHeart(heartLeft);
+    });
+
+    heartRight.addEventListener('click', () => {
+      animateHeart(heartRight);
+    });
+
+    btn.addEventListener('click', () => {
+      mainContainer.style.display = 'flex';
+
+      for (let i = 0; i < 30; i++) {
+        const text = document.createElement('div');
+        text.classList.add('falling-text');
+        text.innerText = '🥰 i love cho 🥰';
+        text.style.left = Math.random() * 100 + 'vw';
+        text.style.animationDelay = (Math.random() * 4) + 's';
+        text.style.fontSize = (Math.random() * 2 + 3) + 'vw';
+
+        document.body.appendChild(text);
+
+        setTimeout(() => {
+          text.remove();
+        }, 12000);
+      }
+    });
+  </script>
+
+</body>
+</html>
